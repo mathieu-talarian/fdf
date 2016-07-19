@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/15 15:24:10 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/18 20:39:51 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 13:17:45 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int		key_hook(int keycode, void *params)
 		pre_free((t_all *)params);
 		exit(0);
 	}
-	redraw_key((t_all *)params, keycode);
+	if (123 <= keycode && keycode <= 126)
+		redraw_key_position((t_all *)params, keycode);
+	else if (37 <= keycode && keycode <= 47)
+		redraw_key_cst((t_all *)params, keycode);
+	else
+		redraw_key((t_all *)params, keycode);
 	return (0);
 }

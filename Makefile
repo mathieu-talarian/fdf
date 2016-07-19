@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/06 14:35:06 by mmoullec          #+#    #+#              #
-#    Updated: 2016/07/18 21:00:00 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/07/19 13:07:18 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS = datas.c\
 	   fdf_listing.c\
 	   fil_de_fer.c\
 	   fonctions_transfo.c\
-	   ges_tab.c\
 	   mlx_draw.c\
 	   mlx_util.c\
 	   mlx_print.c\

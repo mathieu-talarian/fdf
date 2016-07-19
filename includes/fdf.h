@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 16:43:34 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/18 20:49:57 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 17:59:35 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define IMG MMM->infos_img->img
 # define DATAS all->datas
 # define LINE DATAS->line
-# define GET_COLOR(col) mlx_get_color_value(mlx->mlx, find_color(col));
+# define GET_COLOR(col) mlx_get_color_value(mlx->mlx, col);
 # define MAX(a, b) ((a) < (b) ? (b) : (a))
 # define MIN(a, b) ((a) < (b) ? (a) : (b))
 # define ABS(a) ((a) < 0 ? (a * -1) : (a))
@@ -51,7 +51,7 @@ typedef struct		s_line
 	int				x;
 	int				y;
 	int				z;
-	char			*color;
+	unsigned int	color;
 	struct s_line	*next;
 }					t_line;
 
@@ -158,7 +158,7 @@ t_line				*new_line_list(int y, int x, char *nbr);
 t_datas				*new_data_list(int count_words, int num_line, char **tab);
 void				data_list_add(t_datas **begin_list, t_datas *new);
 void				line_list_add(t_line **begin_list, t_line *new);
-void				free_lists(t_datas **datas, t_line **line);
+void				free_lists(t_datas **datas);
 t_line				*find_next_y(t_datas **datas, int x, int y);
 t_line				*find_next_y2(t_line **line, int x);
 void				pre_free(t_all *all);
@@ -176,7 +176,8 @@ void				fill_image(t_mlx *mlx, t_image **image);
 **affichage & couleur
 */
 void				aff_coord(t_all **all);
-int					find_color(char *couleur);
+unsigned int		find_color(char *couleur);
+unsigned int		fill_color(int alt);
 void				put_color_to_pixel(t_mlx *mlx, t_draw draw, \
 		unsigned int color);
 int					ft_x1(t_mlx *mlx, int x, int y);
@@ -194,6 +195,8 @@ void				mlx_draw_line(t_datas *datas, t_line **line, t_mlx *mlx, \
 int					key_hook(int keycode, void *params);
 int					mouse_hook(int keycode, void *params);
 void				redraw_key(t_all *all, int keycode);
+void				redraw_key_position(t_all *all, int keycode);
+void				redraw_key_cst(t_all *all, int keycode);
 void				redraw_mouse(t_all *all, int keycode);
 
 /*
@@ -205,5 +208,6 @@ void				print_datas(t_all **ll);
 t_cst				*fill_cst(t_datas **datas);
 void				format_window(int *win_x, int *win_y, int x_max, \
 		int y_max);
+void				ft_tabdel(char ***tabl);
 
 #endif

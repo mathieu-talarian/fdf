@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 18:21:48 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/12 15:24:19 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 17:58:13 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ t_line		*new_line_list(int y, int x, char *nbr)
 		tab = ft_strsplit(nbr, ',');
 		new->x = x;
 		new->y = y;
-		new->z = ft_atoi(nbr);
+		new->z = ft_atoi(tab[0]);
+		ft_strdel(&tab[0]);
 		if (tab[1])
-			new->color = ft_strdup(tab[1]);
-		else
 		{
-			if (new->z != 0)
-				new->color = ft_strdup("0xffff00");
-			else
-				new->color = ft_strdup("0xffffff");
+			new->color = find_color(tab[1]);
+			ft_strdel(&tab[1]);
 		}
+		else
+			new->color = find_color("0xffffff");
 		new->next = NULL;
 	}
+	ft_strdel(tab);
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 17:41:09 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/18 20:51:20 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 12:34:19 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	free_datas_list(t_datas **begin_list)
 		while (ll)
 		{
 			next = ll->next;
+			free_line_list(&ll->line);
 			free(ll);
 			ll = NULL;
 			ll = next;
@@ -50,18 +51,17 @@ void	free_datas_list(t_datas **begin_list)
 	}
 }
 
-void	free_lists(t_datas **datas, t_line **line)
+void	free_lists(t_datas **datas)
 {
-	free_line_list(line);
 	free_datas_list(datas);
 }
 
 void	pre_free(t_all *all)
 {
 	mlx_destroy_image(MLX, IMG);
-	mlx_clear_window (MLX, WIN);
-	mlx_destroy_window (MLX, WIN);
+	mlx_clear_window(MLX, WIN);
+	mlx_destroy_window(MLX, WIN);
 	free(all->mlx->infos_img);
 	free(all->mlx->cst);
-	free_lists(&all->datas, &all->datas->line);
+	free_lists(&all->datas);
 }

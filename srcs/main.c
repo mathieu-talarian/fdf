@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/11 15:17:54 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/18 19:02:46 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 15:14:00 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@ int				fdf_fill_list(int fd, char **line, t_datas **datas)
 		if (i == -1)
 			return (-1);
 		j = ft_count_words(*line, ' ', ft_char_cmp);
+		if (*line == NULL)
+			return (-1);
 		tab = ft_strsplit(*line, ' ');
 		data_list_add(datas, new_data_list(j, k, tab));
 		tab_clr(&tab);
 		k++;
 	}
-	free(tab);
+	if (j == 0)
+		return (-1);
+	ft_tabdel(&tab);
 	return (1);
 }
 
@@ -47,6 +51,7 @@ int				fdf_start_fill(int fd, t_datas **datas)
 {
 	char		*line;
 
+	line = NULL;
 	if ((fdf_fill_list(fd, &line, datas)) < 0)
 		return (0);
 	return (1);

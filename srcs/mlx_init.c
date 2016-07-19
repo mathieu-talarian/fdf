@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 14:22:08 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/18 20:39:07 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/19 15:27:25 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_image		*init_image(t_mlx *mlx)
 
 	ll = (t_image *)malloc(sizeof(t_image));
 	ll->img = mlx_new_image(mlx->mlx, mlx->cst->win_x, mlx->cst->win_y);
-	printf("%d\n%d\n", mlx->cst->win_y, mlx->cst->win_x);
 	ll->d_addr = mlx_get_data_addr(ll->img, &ll->bpp, &ll->sizeline, \
 			&ll->endian);
 	return (ll);
@@ -77,8 +76,8 @@ t_cst		*fill_cst(t_datas **datas)
 	cst = (t_cst *)malloc(sizeof(t_cst));
 	format_window(&cst->win_x, &cst->win_y, ll->nb_words, ft_max_y(ll));
 	cst->aggr_y = cst->win_y / 3;
-	cst->aggr_x = cst->win_x / 2;
-	cst->ct1 = 0.5;
+	cst->aggr_x = cst->win_x / 2.5;
+	cst->ct1 = 0.9;
 	cst->ct2 = 0.9;
 	cst->ct3 = 0;
 	cst->ct4 = -3;
