@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/06 14:35:06 by mmoullec          #+#    #+#              #
-#    Updated: 2016/07/19 13:07:18 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/07/20 17:38:22 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ LIBI = -I./libft
 INC = -I./includes
 SRC_DIR = ./srcs/
 SRCS = datas.c\
+	   modify_colors.c\
 	   main.c\
 	   fdf_errors.c\
 	   fdf_listing.c\
@@ -40,7 +41,6 @@ OBJ_FILES = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	@make fclean -C libft
 	@make -C libft
 	@echo "lib"
 	@$(CC) -o $(NAME) $^ $(OBJ) $(INC) $(LIB) $(MLX)
@@ -55,6 +55,7 @@ clean:
 	@echo "clean ok"
 
 fclean: clean
+	@make fclean -C libft
 	@rm $(NAME)
 	@echo "fclean ok"
 

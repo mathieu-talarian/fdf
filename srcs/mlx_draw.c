@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 16:41:19 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 16:19:33 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/20 18:55:22 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void		fill_pts(t_pts *pts, t_mlx *mlx, t_line *line)
 void		mlx_draw_line(t_datas *datas, t_line **ll, t_mlx *mlx, int cpt)
 {
 	t_pts				pts;
-	t_line				*next_y;
 	t_line				*line;
 	t_alt				alt;
 
@@ -93,15 +92,18 @@ void		mlx_draw_line(t_datas *datas, t_line **ll, t_mlx *mlx, int cpt)
 	if (line->next)
 	{
 		fill_pts(&pts, mlx, line);
-		alt.col_n = GET_COLOR(line->color);
-		alt.col_p = GET_COLOR(line->next->color);
+		if (line->color == find_color("0xffffff"))
+		{
+			alt.col_n = GET_COLOR(find_color(modify_colors(line, mlx)));
+			alt.col_p = GET_COLOR(find_color(modify_colors(line->next, mlx)));
+		}
+		else
+		{
+			alt.col_n = GET_COLOR(line->color);
+			alt.col_p = GET_COLOR(line->next->color);
+		}
 		ligne(mlx, pts, alt);
 	}
 	if (cpt == 1)
-	{
-		next_y = find_next_y(&datas, line->x, line->y + 1);
-		alt.col_n = GET_COLOR(line->color);
-		alt.col_p = GET_COLOR(next_y->color);
-		mlx_draw_line_2(line, next_y, mlx, alt);
-	}
+		draw_next_y(datas, line, mlx);
 }

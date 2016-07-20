@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 16:43:34 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 17:59:35 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/07/20 18:55:21 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,10 @@ void				line_1(t_mlx *mlx, t_draw draw, t_alt alt);
 void				line_2(t_mlx *mlx, t_draw draw, t_alt alt);
 void				mlx_draw_line(t_datas *datas, t_line **line, t_mlx *mlx, \
 		int cpt);
+void				draw_next_y(t_datas *datas, t_line *line, t_mlx *mlx);
+void				mlx_draw_line_2(t_line *line_x, t_line *line_y, \
+		t_mlx *mlx, t_alt alt);
+char				*modify_colors(t_line *line, t_mlx *mlx);
 
 /*
 **hooks & redraws
