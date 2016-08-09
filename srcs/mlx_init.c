@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 14:22:08 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 15:27:25 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 12:26:54 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_mlx		*mlx_initialise(t_datas **datas)
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->cst->win_x, \
 			mlx->cst->win_y, "fdf");
+	mlx->form = 1;
+	mlx->deg = 0;
 	return (mlx);
 }
 

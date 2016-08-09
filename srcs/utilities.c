@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 17:29:22 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 15:38:08 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 13:05:17 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,15 @@ void	tab_clr(char ***tab)
 		tmp[i] = 0;
 		i++;
 	}
+}
+
+void	print_infos(char *filename)
+{
+	ft_putstr("ouverture du fichier: ");
+	ft_putendl(filename);
+	ft_putendl("ZOOM-> touches + et - pave numerique");
+	ft_putendl("Changement de vue-> \"t\"");
+	ft_putendl("Enable degrade (alpha)-> \"d\"");
+	ft_putendl("manipuation COS et SIN-> \"l\" \".\", \"k\" \",\"");
+	ft_putendl("Changement hauteur Z-> \"a\" \"z\"");
 }

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 16:41:19 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/20 18:55:22 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 13:12:33 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,20 @@ void		line_to_pixel(t_mlx *mlx, t_draw draw, t_alt alt)
 {
 	if (test_in_window(draw.x, draw.y, mlx->cst))
 		put_color_to_pixel(mlx, draw, alt.col_n);
-	if (draw.dx > draw.dy)
-		line_1(mlx, draw, alt);
+	if (mlx->deg != 0)
+	{
+		if (draw.dx > draw.dy)
+			line_1(mlx, draw, alt);
+		else
+			line_2(mlx, draw, alt);
+	}
 	else
-		line_2(mlx, draw, alt);
+	{
+		if (draw.dx > draw.dy)
+			line1(mlx, draw, alt);
+		else
+			line2(mlx, draw, alt);
+	}
 }
 
 void		ligne(t_mlx *mlx, t_pts pts, t_alt alt)
@@ -48,27 +58,21 @@ void		ligne(t_mlx *mlx, t_pts pts, t_alt alt)
 	line_to_pixel(mlx, draw, alt);
 }
 
-void		mlx_draw_line_2(t_line *line_x, t_line *line_y, t_mlx *mlx, \
-		t_alt alt)
+void		fill_pts_par(t_pts *pts, t_mlx *mlx, t_line *line)
 {
-	int		a;
-	int		b;
-	int		c;
-	int		d;
-	t_pts	pts;
-
-	a = ft_x1(mlx, line_x->x, line_x->y);
-	c = ft_x1(mlx, line_y->x, line_y->y);
-	b = ft_y1(mlx, line_x->x, line_x->y, line_x->z);
-	d = ft_y1(mlx, line_y->x, line_y->y, line_y->z);
-	pts.x0 = X(a, b, COS, SIN);
-	pts.y0 = Y(a, b, SIN, COS);
-	pts.x1 = X(c, d, COS, SIN);
-	pts.y1 = Y(c, d, SIN, COS);
-	ligne(mlx, pts, alt);
+	pts->x0 = X(ft_x2(mlx, line->x, line->z), \
+			ft_y2(mlx, line->y, line->z), COS, SIN);
+	pts->y0 = Y(ft_x2(mlx, line->x, line->z), \
+			ft_y2(mlx, line->y, line->z), SIN, COS);
+	pts->x1 = X(ft_x2(mlx, line->next->x, line->next->z), \
+			ft_y2(mlx, line->next->y, line->next->z), \
+			COS, SIN);
+	pts->y1 = Y(ft_x2(mlx, line->next->x, line->next->z), \
+			ft_y2(mlx, line->next->y, line->next->z), \
+			SIN, COS);
 }
 
-void		fill_pts(t_pts *pts, t_mlx *mlx, t_line *line)
+void		fill_pts_iso(t_pts *pts, t_mlx *mlx, t_line *line)
 {
 	pts->x0 = X(ft_x1(mlx, line->x, line->y), \
 			ft_y1(mlx, line->x, line->y, line->z), COS, SIN);
@@ -91,7 +95,10 @@ void		mlx_draw_line(t_datas *datas, t_line **ll, t_mlx *mlx, int cpt)
 	line = *ll;
 	if (line->next)
 	{
-		fill_pts(&pts, mlx, line);
+		if (mlx->form == 1)
+			fill_pts_iso(&pts, mlx, line);
+		else
+			fill_pts_par(&pts, mlx, line);
 		if (line->color == find_color("0xffffff"))
 		{
 			alt.col_n = GET_COLOR(find_color(modify_colors(line, mlx)));

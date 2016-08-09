@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 17:38:46 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/20 19:02:39 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 12:40:41 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,19 @@ void		draw_next_y(t_datas *datas, t_line *line, t_mlx *mlx)
 
 char		*modify_colors(t_line *line, t_mlx *mlx)
 {
-	if (line->z * mlx->cst->prop_z < 0)
+	if (line->z * mlx->cst->prop_z == 0)
+		return ("0xffffff");
+	if (line->z * mlx->cst->prop_z < 0 && line->z * mlx->cst->prop_z > -20)
+		return ("0x7fffd4");
+	if (line->z * mlx->cst->prop_z > 0 && line->z * mlx->cst->prop_z < 20)
+		return ("0x98fb98");
+	if (line->z * mlx->cst->prop_z >= 20 && line->z * mlx->cst->prop_z < 50)
 		return ("0xff");
-	if (line->z * mlx->cst->prop_z > 0)
-		return ("0xffff");
+	if (line->z * mlx->cst->prop_z >= 50)
+		return ("0xbfff");
+	if (line->z * mlx->cst->prop_z <= -20 && line->z * mlx->cst->prop_z > -50)
+		return ("0x202baa");
+	if (line->z * mlx->cst->prop_z <= -50)
+		return ("0x66cdaa");
 	return ("0xffffff");
 }

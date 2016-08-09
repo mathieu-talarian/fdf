@@ -6,7 +6,7 @@
 #    By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/06 14:35:06 by mmoullec          #+#    #+#              #
-#    Updated: 2016/07/20 17:38:22 by mmoullec         ###   ########.fr        #
+#    Updated: 2016/08/09 13:09:45 by mmoullec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = datas.c\
 	   fil_de_fer.c\
 	   fonctions_transfo.c\
 	   mlx_draw.c\
+	   mlx_draw2.c\
 	   mlx_util.c\
 	   mlx_print.c\
 	   redraw.c\
@@ -34,6 +35,7 @@ SRCS = datas.c\
 	   find_color.c\
 	   free_lists.c\
 	   mlx_screen.c\
+	   mlx_screen2.c\
 	   mlx_calcs.c
 
 OBJ_FILES = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/19 15:29:06 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 17:58:41 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 10:48:51 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ unsigned int		find_color(char *couleur)
 	chr = ft_strchr(couleur, 'x');
 	i = chr - couleur + 1;
 	couleur = &couleur[i];
-	printf("%s\n", couleur);
 	return (ft_atoi_base(couleur, "0123456789abcdef"));
 }
 

@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/11 15:17:54 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/19 15:14:00 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 13:12:32 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ int				main(int ac, char **av)
 	all->datas = NULL;
 	if (fdf_parsing(av[1], &all) <= 0)
 		return (0);
+	print_infos(av[1]);
+	sleep(2);
 	all->mlx = mlx_initialise(&all->datas);
 	all->mlx->infos_img = init_image(all->mlx);
 	aff_coord(&all);

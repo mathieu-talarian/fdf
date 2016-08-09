@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: mmoullec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 16:43:34 by mmoullec          #+#    #+#             */
-/*   Updated: 2016/07/20 19:02:24 by mmoullec         ###   ########.fr       */
+/*   Updated: 2016/08/09 13:04:56 by mmoullec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct		s_mlx
 	void			*win;
 	t_image			*infos_img;
 	t_cst			*cst;
+	int				form;
+	int				deg;
 }					t_mlx;
 
 typedef struct		s_pts
@@ -184,8 +186,12 @@ int					ft_x1(t_mlx *mlx, int x, int y);
 int					ft_y1(t_mlx *mlx, int x, int y, int z);
 int					ft_x2(t_mlx *mlx, int x, int z);
 int					ft_y2(t_mlx *mlx, int y, int z);
+void				ligne(t_mlx *mlx, t_pts pts, t_alt alt);
 void				line_1(t_mlx *mlx, t_draw draw, t_alt alt);
 void				line_2(t_mlx *mlx, t_draw draw, t_alt alt);
+void				line1(t_mlx *mlx, t_draw draw, t_alt alt);
+void				line2(t_mlx *mlx, t_draw draw, t_alt alt);
+
 void				mlx_draw_line(t_datas *datas, t_line **line, t_mlx *mlx, \
 		int cpt);
 void				draw_next_y(t_datas *datas, t_line *line, t_mlx *mlx);
@@ -213,5 +219,6 @@ t_cst				*fill_cst(t_datas **datas);
 void				format_window(int *win_x, int *win_y, int x_max, \
 		int y_max);
 void				ft_tabdel(char ***tabl);
+void				print_infos(char *filename);
 
 #endif
